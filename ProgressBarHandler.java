@@ -31,3 +31,26 @@ public class ProgressBarHandler {
         mProgressBar.setVisibility(View.INVISIBLE);
     }
 }
+/*
+    //创建进度条，p可定义到当前页面，根据需要p.hide
+    private void createProgressBar(){
+        //整个Activity布局的最终父布局,参见参考资料
+        FrameLayout rootFrameLayout=(FrameLayout) findViewById(android.R.id.content);
+        FrameLayout.LayoutParams layoutParams=
+                new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.gravity=Gravity.CENTER;
+        ProgressBar p=new ProgressBar(mContext);
+        p.setLayoutParams(layoutParams);
+        p.setVisibility(View.VISIBLE);
+        rootFrameLayout.addView(p);
+    }
+
+    //创建进度条对话框，可以双击页面其他部分取消进度状态，p可定义到当前页面，根据需要p.hide
+    private void createProgressDialog(){
+        mContext=this;
+        ProgressDialog p =new ProgressDialog(mContext);
+        p.setMessage("请稍等...");
+        p.show();
+    }
+
+*/
