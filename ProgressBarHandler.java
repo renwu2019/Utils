@@ -54,3 +54,38 @@ public class ProgressBarHandler {
     }
 
 */
+
+
+/*
+//配合登录，注意线程的切换
+mLoginBtn.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        //测试用途，省去验证
+        mLoginProgressBar.setVisibility(View.VISIBLE);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(3000);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mLoginProgressBar.setVisibility(View.GONE);
+                            toMainActivity();
+                        }
+                    });
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+    }
+});
+
+*/
+
+
+
