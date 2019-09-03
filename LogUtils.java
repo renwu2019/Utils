@@ -9,11 +9,12 @@ import com.example.jobhelper.common.Constants;
  */
 public class LogUtils {
     /**
-     * µ÷ÊÔ
+     * ÂµÃ·ÃŠÃ”
      */
     public static void d(String msg){
         StackTraceElement traceElement = ((new Exception()).getStackTrace())[1];
         StringBuffer toStringBuffer = new StringBuffer("[").append(
+            Thread.currentThread().getName()).append("|").append(
                 traceElement.getFileName()).append(" | ").append(
                 traceElement.getLineNumber()).append(" | ").append(
                 traceElement.getMethodName()).append("()").append("]");
@@ -24,6 +25,7 @@ public class LogUtils {
     public static void v(String msg){
         StackTraceElement traceElement = ((new Exception()).getStackTrace())[1];
         StringBuffer toStringBuffer = new StringBuffer("[").append(
+            Thread.currentThread().getName()).append("|").append(
                 traceElement.getFileName()).append(" | ").append(
                 traceElement.getLineNumber()).append(" | ").append(
                 traceElement.getMethodName()).append("()").append("]");
@@ -35,6 +37,7 @@ public class LogUtils {
     public static void w(String msg){
         StackTraceElement traceElement = ((new Exception()).getStackTrace())[1];
         StringBuffer toStringBuffer = new StringBuffer("[").append(
+            Thread.currentThread().getName()).append("|").append(
                 traceElement.getFileName()).append(" | ").append(
                 traceElement.getLineNumber()).append(" | ").append(
                 traceElement.getMethodName()).append("()").append("]");
@@ -46,6 +49,7 @@ public class LogUtils {
     public static void e(String msg){
         StackTraceElement traceElement = ((new Exception()).getStackTrace())[1];
         StringBuffer toStringBuffer = new StringBuffer("[").append(
+            Thread.currentThread().getName()).append("|").append(
                 traceElement.getFileName()).append(" | ").append(
                 traceElement.getLineNumber()).append(" | ").append(
                 traceElement.getMethodName()).append("()").append("]");
@@ -56,6 +60,7 @@ public class LogUtils {
     public static void i(String msg) {
         StackTraceElement traceElement = ((new Exception()).getStackTrace())[1];
         StringBuffer toStringBuffer = new StringBuffer("[").append(
+            Thread.currentThread().getName()).append("|").append(
                 traceElement.getFileName()).append(" | ").append(
                 traceElement.getLineNumber()).append(" | ").append(
                 traceElement.getMethodName()).append("()").append("]");
