@@ -9,12 +9,12 @@ import java.util.TimeZone;
 
 public class TimeUtil {
     //private static final String DATE_FORMAT_1 = "dd MMMM yyyy";
-    private static final String DATE_FORMAT_1 = "yyyyÄêMMÔÂddÈÕ";
-    private static final String DATE_FORMAT_2 = "yyyyÄêMMÔÂddÈÕHH : mm";
+    private static final String DATE_FORMAT_1 = "yyyyå¹´MMæœˆddæ—¥";
+    private static final String DATE_FORMAT_2 = "yyyyå¹´MMæœˆddæ—¥HH : mm";
 
-    public static long getTimestamp1(String dateString) { //½«×Ö·û´®ÀàĞÍ×ª³ÉlongÀàĞÍ  ÄêÔÂÈÕ
+    public static long getTimestamp1(String dateString) { //å°†å­—ç¬¦ä¸²ç±»å‹è½¬æˆlongç±»å‹  å¹´æœˆæ—¥
         try {
-            //ÔÂ·İÄÇÓÃÁËÖĞÎÄ£¬ÕâÀï±ß±ã¸Ä³É¼òÌåÖĞÎÄ,Ô­£ºLocale.ENGLISH
+            //æœˆä»½é‚£ç”¨äº†ä¸­æ–‡ï¼Œè¿™é‡Œè¾¹ä¾¿æ”¹æˆç®€ä½“ä¸­æ–‡,åŸï¼šLocale.ENGLISH
             Date date = new SimpleDateFormat(DATE_FORMAT_1, Locale.getDefault()).parse(dateString);
             return date.getTime();
         } catch (ParseException e) {
@@ -22,9 +22,9 @@ public class TimeUtil {
         }
         return 0;
     }
-    public static long getTimestamp2(String dateString) { //½«×Ö·û´®ÀàĞÍ×ª³ÉlongÀàĞÍ  ÄêÔÂÈÕÊ±·Ö
+    public static long getTimestamp2(String dateString) { //å°†å­—ç¬¦ä¸²ç±»å‹è½¬æˆlongç±»å‹  å¹´æœˆæ—¥æ—¶åˆ†
         try {
-            //ÔÂ·İÄÇÓÃÁËÖĞÎÄ£¬ÕâÀï±ß±ã¸Ä³É¼òÌåÖĞÎÄ,Ô­£ºLocale.ENGLISH
+            //æœˆä»½é‚£ç”¨äº†ä¸­æ–‡ï¼Œè¿™é‡Œè¾¹ä¾¿æ”¹æˆç®€ä½“ä¸­æ–‡,åŸï¼šLocale.ENGLISH
             Date date = new SimpleDateFormat(DATE_FORMAT_2, Locale.getDefault()).parse(dateString);
             return date.getTime();
         } catch (ParseException e) {
@@ -33,7 +33,7 @@ public class TimeUtil {
         return 0;
     }
 
-    public static String getDateString(long time) { //½«longÀàĞÍ¸ñÊ½»¯³É×Ö·ûÀàĞÍ  ÄêÔÂÈÕÊ±·Ö
+    public static String getDateString(long time) { //å°†longç±»å‹æ ¼å¼åŒ–æˆå­—ç¬¦ç±»å‹  å¹´æœˆæ—¥æ—¶åˆ†
         Date date = new Date(time);
         DateFormat format = new SimpleDateFormat(DATE_FORMAT_2, Locale.getDefault());
         format.setTimeZone(TimeZone.getDefault());
@@ -49,5 +49,13 @@ public class TimeUtil {
         int second = calendar.get(Calendar.SECOND);
         int datetime[] = {year,month,day,hour,minute,second};
         return datetime;
+    }
+    
+        public static String getPhotoName(){
+        String photoName="";
+        int datatime[] = getCurrentDateTime();
+        photoName = datatime[0]+"-"+datatime[1]+"-"+datatime[2]+"_"+
+                (datatime[3]*60*60+datatime[4]*60+datatime[5]);
+        return photoName;
     }
 }
