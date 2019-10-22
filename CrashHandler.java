@@ -182,14 +182,22 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     //将错误日志记录
     private String writeFile(String sb) throws Exception {
         String time = formatter.format(new Date());
-        String fileName = "crash-" + time + ".log";
+        int lableInfo = mContext.getApplicationInfo().labelRes;
+        String appName = mContext.getString(lableInfo);
+        String fileName =appName+"_crash-" + time + ".log";
         if (ExistSDCard()) {
-            String path = getGlobalpath();
-            File dir = new File(path);
-            if (!dir.exists())
-                dir.mkdirs();
-
-            FileOutputStream fos = new FileOutputStream(path + fileName, true);
+            //String path = getGlobalpath();
+            //File dir = new File(path);
+            //if (!dir.exists())
+                //dir.mkdirs();
+            //FileOutputStream fos = new FileOutputStream(path + fileName, true);
+            String path = getGlobalpath()+"/"+fileName;
+            File file = new File(path);
+            if (!file.exists()){
+                file.createNewFile();
+            }
+            FileOutputStream fos = new FileOutputStream(file, true);
+            
             fos.write(sb.getBytes());
             fos.flush();
             fos.close();
@@ -209,7 +217,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     //获取缓存路径
     private  String getGlobalpath(){
         Log.e("缓存文件的路径",mContext.getExternalCacheDir().toString()+"");
-        return mContext.getExternalCacheDir().toString();
+        //return mContext.getExternalCacheDir().toString();
+        return Environment.getExternalStorageDirectory().toString();
     }
 
 }
