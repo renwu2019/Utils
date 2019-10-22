@@ -24,6 +24,7 @@ import java.util.Map;
 
 /**
  * Created by Administrator on 2019/10/21.
+ * do not forget read and write permission
  */
 
 public class CrashHandler implements Thread.UncaughtExceptionHandler {
