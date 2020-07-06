@@ -1,10 +1,11 @@
-package com.student.onlineretailers.atest;
+package com.wyp.canvas;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.util.Log;
@@ -21,11 +22,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
-/**
- * Created by Administrator on 2019/10/21.
- * do not forget read and write permission
- */
 
 public class CrashHandler implements Thread.UncaughtExceptionHandler {
     public static String TAG = "MyCrash";
@@ -185,13 +181,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         String time = formatter.format(new Date());
         int lableInfo = mContext.getApplicationInfo().labelRes;
         String appName = mContext.getString(lableInfo);
-        String fileName =appName+"_crash-" + time + ".log";
+        String fileName =appName+"_crash-" + time + ".txt";
         if (ExistSDCard()) {
-            //String path = getGlobalpath();
-            //File dir = new File(path);
-            //if (!dir.exists())
-                //dir.mkdirs();
-            //FileOutputStream fos = new FileOutputStream(path + fileName, true);
             String path = getGlobalpath()+"/"+fileName;
             File file = new File(path);
             if (!file.exists()){
@@ -208,18 +199,27 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     //是否存在sd卡
     private boolean ExistSDCard() {
-        if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
-            return true;
-        }
-        else
-            return false;
+        return android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
     }
-    
-    //获取缓存路径
+
+    /**
+     *  获取存储路径
+     *  通过Environment一般获取的是/storage/emulated/0，也就是手机打开存储系统第一级。
+     *      Environment.getExternalStorageDirectory().getPath();
+     *      Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getPath(); // 第一级的相机目录
+     *      ...
+     *      Environment.getRootDirectory().getPath(); //系统存储目录 /system  树根下第一级
+     *      ...
+     *  通过Context获取一般是包名下的文件/storage/emulated/0/Android/data/packagename/[cache|files...] 沙盒目录
+     *      getApplicationContext().getExternalFilesDir(null).getPath();
+     *      getApplicationContext().getExternalMediaDirs(); //storage/emulated/0/Android/data/packagename
+     *      ...
+     *      getApplicationContext().getFilesDir().getPath(); //data/data/packagename/files          内部
+     */
+
     private  String getGlobalpath(){
-        Log.e("缓存文件的路径",mContext.getExternalCacheDir().toString()+"");
-        //return mContext.getExternalCacheDir().toString();
-        return Environment.getExternalStorageDirectory().toString();
+        return  mContext.getExternalFilesDir(null).getPath();
+        //return Environment.getExternalStorageDirectory().getPath();
     }
 
 }
