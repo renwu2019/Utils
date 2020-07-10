@@ -64,7 +64,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         } else {
             SystemClock.sleep(3000);
             //重启程序
-            restartApp();
+            //restartApp();
 
         }
     }
@@ -91,7 +91,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
                 @Override
                 public void run() {
                     Looper.prepare();
-                    Toast.makeText(mContext, "很抱歉,程序出现异常,即将重启.",
+                    Toast.makeText(mContext, "很抱歉,程序出现异常,即将关闭.",
                             Toast.LENGTH_LONG).show();
                     Looper.loop();
                 }
